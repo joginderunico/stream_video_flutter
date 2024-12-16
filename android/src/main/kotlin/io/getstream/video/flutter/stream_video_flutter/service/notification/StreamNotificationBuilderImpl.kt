@@ -70,9 +70,27 @@ internal class StreamNotificationBuilderImpl(
 
     private fun initNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = getDefaultNotificationChannel(context)
-            context.notificationManager.createNotificationChannel(notificationChannel())
+//            val notificationChannel = getDefaultNotificationChannel(context)
+//            val channel = NotificationChannel(
+//                "org.hccts.brain_sos",
+//                "High Importance Notifications",
+//                NotificationManager.IMPORTANCE_HIGH
+//            )
+//            channel.description = "This channel is used for important notifications."
+            val channel = getNotificationChannelById(context, "org.hccts.brain_sos")
+//            context.notificationManager.createNotificationChannel(notificationChannel())
+            if (channel != null){
+                context.notificationManager.createNotificationChannel(channel)
+            }
         }
+    }
+
+    fun getNotificationChannelById(context: Context, channelId: String): NotificationChannel? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            return notificationManager.getNotificationChannel(channelId)
+        }
+        return null // Notification channels are not supported on Android versions below Oreo
     }
 
     override fun build(payload: NotificationPayload): IdentifiedNotification {
@@ -135,7 +153,7 @@ internal class StreamNotificationBuilderImpl(
         }
 
         setOngoing(true)
-        setSilent(true)
+//        setSilent(true)
         setSound(null)
         setContentIntent(contentIntent)
         setCategory(NotificationCompat.CATEGORY_CALL)
@@ -176,7 +194,7 @@ internal class StreamNotificationBuilderImpl(
         setCategory(NotificationCompat.CATEGORY_CALL)
         setDefaults(NotificationCompat.DEFAULT_ALL)
         setAutoCancel(false)
-        setSilent(true)
+//        setSilent(true)
         setSound(null)
 
         priority = NotificationCompat.PRIORITY_MAX
