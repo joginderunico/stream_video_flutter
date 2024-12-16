@@ -42,7 +42,7 @@ sealed class NotificationAction {
     internal data class Cancel(override val callCid: StreamCallCid, override val serviceType: ServiceType) : NotificationAction() {
         override val type: String = TYPE
         companion object {
-            const val TYPE = "cancel"
+            const val TYPE = "open"
             const val SUFFIX = "intent.action.STREAM_CANCEL"
         }
     }

@@ -9,7 +9,7 @@ import 'model/notification_payload.dart';
 import 'model/service_type.dart';
 
 const _tag = 'SV:Background';
-const _btnCancel = 'cancel';
+const _btnCancel = 'open';
 
 enum ButtonType {
   cancel;
