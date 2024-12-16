@@ -108,6 +108,8 @@ internal class StreamNotificationBuilderImpl(
         intent: Intent,
     ): NotificationCompat.Builder {
 
+        println("NotificationCompat.Builder at 111")
+
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         } else {
@@ -143,6 +145,7 @@ internal class StreamNotificationBuilderImpl(
         payload: NotificationPayload,
         contentIntent: PendingIntent?,
     ) {
+        println("NotificationCompat.Builder at 148")
         val contentTitle = payload.options?.content?.title ?: context.applicationName
         val contentText = payload.options?.content?.text
 
@@ -184,6 +187,7 @@ internal class StreamNotificationBuilderImpl(
         payload: NotificationPayload,
         contentIntent: PendingIntent?,
     ) {
+        println("NotificationCompat.Builder at 190")
         if(type == ServiceType.call) {
             setSmallIcon(R.drawable.stream_video_ic_call)
         } else {
