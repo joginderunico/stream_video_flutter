@@ -70,18 +70,18 @@ internal class StreamNotificationBuilderImpl(
 
     private fun initNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            val notificationChannel = getDefaultNotificationChannel(context)
+            val notificationChannel = getDefaultNotificationChannel(context)
 //            val channel = NotificationChannel(
 //                "org.hccts.brain_sos",
 //                "High Importance Notifications",
 //                NotificationManager.IMPORTANCE_HIGH
 //            )
 //            channel.description = "This channel is used for important notifications."
-            val channel = getNotificationChannelById(context, "org.hccts.brain_sos")
-//            context.notificationManager.createNotificationChannel(notificationChannel())
-            if (channel != null){
-                context.notificationManager.createNotificationChannel(channel)
-            }
+//            val channel = getNotificationChannelById(context, "org.hccts.brain_sos")
+            context.notificationManager.createNotificationChannel(notificationChannel())
+//            if (channel != null){
+//                context.notificationManager.createNotificationChannel(channel)
+//            }
         }
     }
 
@@ -244,8 +244,10 @@ internal class StreamNotificationBuilderImpl(
     private fun getDefaultNotificationChannel(context: Context): (() -> NotificationChannel) {
         return {
             val channel = NotificationChannel(
-                context.getString(R.string.stream_call_notification_channel_id),
-                context.getString(R.string.stream_call_notification_channel_name),
+//                context.getString(R.string.stream_call_notification_channel_id),
+                "org.hccts.brain_sos",
+//                context.getString(R.string.stream_call_notification_channel_name),
+                "High Importance Notifications",
                 NotificationManager.IMPORTANCE_HIGH
             )
 
